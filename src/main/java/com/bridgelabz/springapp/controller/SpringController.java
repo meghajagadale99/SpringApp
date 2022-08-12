@@ -26,12 +26,19 @@ public class SpringController {
 
     @PostMapping("/post")
     public String sayHello(@RequestBody User user) {
-        return "Hello" + user.getFirstName() + "" + user.getLastName() + "!";
+        return "Hello " + user.getFirstName() + " " + user.getLastName() + "!";
     }
 
     @PutMapping("/put/{firstName}")
     public String sayHello(@PathVariable String firstName, @RequestParam(value = "lastName") String lastName) {
         return "Hello" + " " + lastName + "!";
     }
+
+    @PutMapping("/putuser")
+    public String sayHelloUser(@RequestBody User user){
+        log.info(user.toString());
+        return "Hello "+ user.toString();
+    }
+
 
 }
