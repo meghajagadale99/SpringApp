@@ -1,18 +1,22 @@
 package com.bridgelabz.springapp.controller;
 
 import com.bridgelabz.springapp.entity.User;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.web.bind.annotation.*;
 
+@Slf4j
 @RestController
 @RequestMapping("/hello")
 public class SpringController {
+
     //localhost:8080/hello
     @RequestMapping(value = {" ", "/", "/home"})
     public String sayHello() {
         return "Hello From Bridgelabz";
 
     }
-    //localhost:8080/hello/query?name=megha
+
+    //localhost:8080/hello/name?name=megha
     @RequestMapping(value = {"/name"}, method = RequestMethod.GET)
     public String sayHello(@RequestParam(value = "name") String name) {
         return "Hello " + name + "!";
@@ -31,14 +35,13 @@ public class SpringController {
 
     @PutMapping("/put/{firstName}")
     public String sayHello(@PathVariable String firstName, @RequestParam(value = "lastName") String lastName) {
-        return "Hello" + " " + lastName + "!";
+        return "Hello" + firstName + " " + lastName + "!";
     }
 
     @PutMapping("/putuser")
-    public String sayHelloUser(@RequestBody User user){
+    public String sayHelloUser(@RequestBody User user) {
         log.info(user.toString());
-        return "Hello "+ user.toString();
+        return "Hello " + user.toString();
     }
-
 
 }
